@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SURIYA KANTHI - Authentische Sri Lankan Küche in Berlin</title>
+    <meta name="description" content="Bei uns essen Sie vom Feinsten: Original Sri Lanka-Küche mit Lebensmitteln aus überwiegend ökologischem Anbau – und das zu verträglichen Preisen!">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍛</text></svg>">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS (Animate on Scroll) -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">SURIYA KANTHI</a>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#menu">Speisekarte</a></li>
+                <li><a href="#offers">Angebote</a></li>
+                <li><a href="#about">Über uns</a></li>
+                <li><a href="#booking">Reservierung</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content container">
+                <h1 data-aos="fade-up">Authentische Sri Lankan Küche</h1>
+                <p data-aos="fade-up" data-aos-delay="100">Erleben Sie die reichen Aromen und lebendigen Gewürze Sri Lankas im Herzen von Berlin</p>
+                <div class="cta-buttons" data-aos="fade-up" data-aos-delay="200">
+                    <a href="#booking" class="btn btn-primary">
+                        <i class="fas fa-calendar-alt"></i>
+                        Tisch reservieren
+                    </a>
+                    <a href="#menu" class="btn btn-outline">
+                        <i class="fas fa-utensils"></i>
+                        Speisekarte ansehen
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Section -->
+        <section id="menu" class="menu-section">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <h2>Unsere Speisekarte</h2>
+                    <p>Entdecken Sie die authentischen Aromen Sri Lankas</p>
+                </div>
+                <div class="menu-tabs" data-aos="fade-up">
+                    <button class="menu-tab active" data-category="starters">Vorspeisen</button>
+                    <button class="menu-tab" data-category="mains">Hauptgerichte</button>
+                    <button class="menu-tab" data-category="desserts">Desserts</button>
+                    <button class="menu-tab" data-category="beverages">Getränke</button>
+                </div>
+                <div class="menu-container">
+                    <!-- Menu items will be dynamically inserted here by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Offers Section -->
+        <section id="offers" class="offers-section">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <h2>Besondere Angebote</h2>
+                    <p>Verpassen Sie nicht unsere speziellen Pakete und Angebote</p>
+                </div>
+                <div class="offers-container">
+                    <!-- Offers will be dynamically inserted here by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <!-- About content will be dynamically inserted here by JavaScript -->
+                    </div>
+                    <div class="about-image" data-aos="fade-left">
+                        <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80" alt="Traditional Sri Lankan cooking">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Booking Section -->
+        <section id="booking" class="booking-section">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <h2>Reservierung & Bestellung</h2>
+                    <p>Reservieren Sie Ihren Tisch oder bestellen Sie online</p>
+                </div>
+                <div class="booking-container" data-aos="fade-up" data-aos-delay="100">
+                    <a href="#" class="booking-btn book-table">
+                        <i class="fas fa-phone"></i>
+                        Tisch reservieren
+                    </a>
+                    <a href="#" class="booking-btn order-delivery">
+                        <i class="fas fa-motorcycle"></i>
+                        Bei Lieferando bestellen
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Section -->
+        <section id="location" class="map-section">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <h2>Besuchen Sie uns</h2>
+                    <p>Finden Sie uns im Herzen von Prenzlauer Berg</p>
+                </div>
+                <div id="map" class="google-map" data-aos="fade-up"></div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <h2>Kontakt</h2>
+                    <p>Nehmen Sie Kontakt mit uns auf</p>
+                </div>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <!-- Contact info will be dynamically inserted here by JavaScript -->
+                    </div>
+                    <form class="contact-form" data-aos="fade-right">
+                        <h3>Nachricht senden</h3>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-Mail</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Nachricht</label>
+                            <textarea id="message" name="message" required placeholder="Ihre Nachricht hier..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            Nachricht senden
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>SURIYA KANTHI</h3>
+                    <p>Authentische Sri Lankan Küche im Herzen von Berlin. Erleben Sie die reichen Aromen und traditionellen Kochmethoden, die über Generationen weitergegeben wurden.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Schnelle Links</h3>
+                    <p><a href="#menu">Speisekarte</a></p>
+                    <p><a href="#offers">Angebote</a></p>
+                    <p><a href="#booking">Reservierung</a></p>
+                    <p><a href="#contact">Kontakt</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Kontakt</h3>
+                    <p><i class="fas fa-phone"></i> +49 30 4425301</p>
+                    <p><i class="fas fa-envelope"></i> info@suriya-kanthi.de</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Knaackstr. 4, 10405 Berlin</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Öffnungszeiten</h3>
+                    <p>Montag: Geschlossen</p>
+                    <p>Dienstag - Samstag: 18:00 - 24:00</p>
+                    <p>Sonntag: 11:00 - 24:00</p>
+                    <p><small>Küche bis 23:30</small></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 SURIYA KANTHI. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap"></script>
+    <script type="module" src="config.js"></script>
+    <script type="module" src="scripts.js"></script>
+
+    <!-- Schema.org structured data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "SURIYA KANTHI",
+        "image": "https://images.unsplash.com/photo-1585937421612-70a008356fbe",
+        "description": "Authentische Sri Lankan Küche in Berlin mit Bio-Zutaten und traditionellen Kochmethoden.",
+        "servesCuisine": "Sri Lankan",
+        "telephone": "+49 30 4425301",
+        "email": "info@suriya-kanthi.de",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Knaackstr. 4",
+            "addressLocality": "Berlin",
+            "postalCode": "10405",
+            "addressCountry": "DE"
+        },
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                "opens": "18:00",
+                "closes": "24:00"
+            },
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Sunday",
+                "opens": "11:00",
+                "closes": "24:00"
+            }
+        ]
+    }
+    </script>
+</body>
+</html> 
