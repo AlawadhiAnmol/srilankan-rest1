@@ -23,6 +23,7 @@ function initializeWebsite() {
     setupSmoothScrolling();
     initializeAnimations();
     setupBookingButtons();
+    setupBookingWidget();
     
     // Initialize map when Google Maps API is loaded
     if (window.google && window.google.maps) {
@@ -197,12 +198,12 @@ function renderContactInfo() {
     `;
 }
 
-// Form Validation
+// Form Validation and Submission
 function setupFormValidation() {
     const contactForm = document.querySelector('.contact-form');
     if (!contactForm) return;
 
-    contactForm.addEventListener('submit', (event) => {
+    contactForm.addEventListener('submit', async (event) => {
         event.preventDefault();
         
         const formData = new FormData(contactForm);
@@ -233,15 +234,90 @@ function setupFormValidation() {
         }
         
         if (isValid) {
-            // Create mailto link
-            const subject = encodeURIComponent(`Kontaktanfrage von ${name}`);
-            const body = encodeURIComponent(`Name: ${name}\nE-Mail: ${email}\n\nNachricht:\n${message}`);
-            const mailtoLink = `mailto:${restaurantConfig.contact.email}?subject=${subject}&body=${body}`;
+            // Show loading state
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Wird gesendet...';
+            submitBtn.disabled = true;
             
-            window.location.href = mailtoLink;
-            contactForm.reset();
+            try {
+                // Try Formspree if configured, otherwise fallback to mailto
+                if (restaurantConfig.formspree && restaurantConfig.formspree.endpoint) {
+                    const response = await fetch(restaurantConfig.formspree.endpoint, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        showNotification('Vielen Dank für Ihre Nachricht! Wir melden uns bald bei Ihnen.', 'success');
+                        contactForm.reset();
+                    } else {
+                        throw new Error('Formspree submission failed');
+                    }
+                } else {
+                    // Fallback to mailto
+                    const subject = encodeURIComponent(`Kontaktanfrage von ${name}`);
+                    const body = encodeURIComponent(`Name: ${name}\nE-Mail: ${email}\n\nNachricht:\n${message}`);
+                    const mailtoLink = `mailto:${restaurantConfig.contact.email}?subject=${subject}&body=${body}`;
+                    
+                    window.location.href = mailtoLink;
+                    showNotification('Ihr E-Mail-Programm wird geöffnet...', 'info');
+                    contactForm.reset();
+                }
+            } catch (error) {
+                console.error('Form submission error:', error);
+                showNotification('Es gab ein Problem beim Senden. Bitte versuchen Sie es erneut.', 'error');
+            } finally {
+                // Reset button state
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        } else {
+            showNotification('Bitte füllen Sie alle Felder korrekt aus.', 'error');
         }
     });
+}
+
+// Notification System
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        background: ${type === 'success' ? 'var(--success)' : type === 'error' ? 'var(--primary)' : 'var(--secondary)'};
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-lg);
+        z-index: 10000;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        max-width: 300px;
+        font-size: 0.9rem;
+    `;
+    notification.textContent = message;
+    
+    document.body.appendChild(notification);
+    
+    // Animate in
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Remove after 5 seconds
+    setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            if (document.body.contains(notification)) {
+                document.body.removeChild(notification);
+            }
+        }, 300);
+    }, 5000);
 }
 
 // Smooth Scrolling
@@ -351,4 +427,51 @@ function initMap() {
 }
 
 // Export functions for global access
-window.initMap = initMap; 
+window.initMap = initMap;
+
+// Booking Widget Toggle
+function toggleBookingWidget() {
+    const widget = document.getElementById('bookingWidget');
+    const isActive = widget.classList.contains('active');
+    
+    if (isActive) {
+        widget.classList.remove('active');
+    } else {
+        widget.classList.add('active');
+        // Scroll to widget after opening
+        setTimeout(() => {
+            widget.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'center' 
+            });
+        }, 200);
+    }
+}
+
+// Setup Booking Widget Events
+function setupBookingWidget() {
+    // Close widget when clicking outside
+    document.addEventListener('click', function(event) {
+        const widget = document.getElementById('bookingWidget');
+        const toggleBtn = document.querySelector('.book-table-online');
+        
+        if (widget && widget.classList.contains('active')) {
+            if (!widget.contains(event.target) && !toggleBtn.contains(event.target)) {
+                widget.classList.remove('active');
+            }
+        }
+    });
+
+    // Close widget on escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            const widget = document.getElementById('bookingWidget');
+            if (widget && widget.classList.contains('active')) {
+                widget.classList.remove('active');
+            }
+        }
+    });
+}
+
+// Export booking functions for global access
+window.toggleBookingWidget = toggleBookingWidget; 

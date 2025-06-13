@@ -113,15 +113,40 @@
                     <h2>Reservierung & Bestellung</h2>
                     <p>Reservieren Sie Ihren Tisch oder bestellen Sie online</p>
                 </div>
+                
+                <!-- Booking Options -->
                 <div class="booking-container" data-aos="fade-up" data-aos-delay="100">
+                    <button class="booking-btn book-table-online" onclick="toggleBookingWidget()">
+                        <i class="fas fa-calendar-check"></i>
+                        Online Tisch reservieren
+                    </button>
                     <a href="#" class="booking-btn book-table">
                         <i class="fas fa-phone"></i>
-                        Tisch reservieren
+                        Telefonisch reservieren
                     </a>
                     <a href="#" class="booking-btn order-delivery">
                         <i class="fas fa-motorcycle"></i>
                         Bei Lieferando bestellen
                     </a>
+                </div>
+
+                <!-- Collapsible Zeeg Booking Widget -->
+                <div class="booking-widget-container" id="bookingWidget" data-aos="fade-up" data-aos-delay="200">
+                    <div class="booking-widget-header">
+                        <h3>
+                            <i class="fas fa-calendar-alt"></i>
+                            Tisch online reservieren
+                        </h3>
+                        <button class="close-widget" onclick="toggleBookingWidget()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="booking-widget-content">
+                        <!-- Zeeg inline embed begins -->
+                        <div class="zeeg-inline-widget" id="zeeg-embed-alawadhianmol7" style="width: auto; height: auto"></div>
+                        <script type="text/javascript" src="https://assets.zeeg.me/embed.min.js" data-user="alawadhianmol7" async></script>
+                        <!-- Zeeg inline embed ends -->
+                    </div>
                 </div>
             </div>
         </section>
@@ -162,6 +187,8 @@
                             <label for="message">Nachricht</label>
                             <textarea id="message" name="message" required placeholder="Ihre Nachricht hier..."></textarea>
                         </div>
+                        <!-- Honeypot field for spam protection -->
+                        <input type="text" name="_gotcha" style="display:none !important" tabindex="-1" autocomplete="off">
                         <button type="submit" class="btn btn-primary">
                             <i class="fas fa-paper-plane"></i>
                             Nachricht senden
@@ -209,7 +236,7 @@
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_ACTUAL_API_KEY_HERE&callback=initMap"></script>
     <script type="module" src="config.js"></script>
     <script type="module" src="scripts.js"></script>
 

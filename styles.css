@@ -537,6 +537,7 @@ section {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  margin-bottom: var(--spacing-lg);
 }
 
 .booking-btn {
@@ -550,10 +551,23 @@ section {
   align-items: center;
   gap: var(--spacing-sm);
   box-shadow: var(--shadow-md);
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-secondary);
+}
+
+.book-table-online {
+  background: var(--gradient);
+  color: var(--white);
+}
+
+.book-table-online:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
 }
 
 .book-table {
-  background: var(--gradient);
+  background: var(--secondary);
   color: var(--white);
 }
 
@@ -572,6 +586,133 @@ section {
   background: var(--primary);
   color: var(--white);
   transform: translateY(-3px);
+}
+
+/* Booking Widget Container */
+.booking-widget-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  opacity: 0;
+  max-height: 0;
+  transform: translateY(-20px);
+  transition: all 0.4s ease;
+}
+
+.booking-widget-container.active {
+  opacity: 1;
+  max-height: 800px;
+  transform: translateY(0);
+}
+
+.booking-widget-header {
+  background: var(--gradient);
+  color: var(--white);
+  padding: var(--spacing-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.booking-widget-header h3 {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: 1.3rem;
+}
+
+.close-widget {
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+  transition: all 0.3s ease;
+}
+
+.close-widget:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.booking-widget-content {
+  padding: var(--spacing-lg);
+  min-height: 400px;
+}
+
+/* Zeeg Widget Styling */
+.zeeg-inline-widget {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+/* Loading state for Zeeg widget */
+.booking-widget-content::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--light);
+  border-top: 3px solid var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  z-index: 1;
+}
+
+.booking-widget-content:has(.zeeg-inline-widget:not(:empty))::before {
+  display: none;
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Mobile Responsive for Booking Widget */
+@media (max-width: 768px) {
+  .booking-container {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .booking-btn {
+    width: 100%;
+    max-width: 300px;
+    padding: 1.2rem 2rem;
+    font-size: 1.1rem;
+  }
+  
+  .booking-widget-container {
+    margin: 0 var(--spacing-sm);
+    max-width: calc(100% - 2rem);
+  }
+  
+  .booking-widget-header {
+    padding: var(--spacing-sm);
+  }
+  
+  .booking-widget-header h3 {
+    font-size: 1.1rem;
+  }
+  
+  .booking-widget-content {
+    padding: var(--spacing-md);
+    min-height: 350px;
+  }
+  
+  .close-widget {
+    padding: 0.3rem;
+    font-size: 1.3rem;
+  }
 }
 
 /* Map Section */
@@ -665,6 +806,18 @@ section {
 .form-group textarea {
   height: 150px;
   resize: vertical;
+}
+
+.form-group input.error,
+.form-group textarea.error {
+  border-color: var(--primary);
+  background-color: rgba(230, 57, 70, 0.05);
+}
+
+.form-group input.error:focus,
+.form-group textarea.error:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.2);
 }
 
 /* Footer */

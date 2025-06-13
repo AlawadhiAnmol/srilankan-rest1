@@ -181,5 +181,15 @@ export const restaurantConfig = {
     "Mo: Geschlossen",
     "Di-Sa: 18:00-24:00",
     "So: 11:00-24:00"
-  ]
+  ],
+
+  // Email Configuration (Formspree)
+  // To enable Formspree: 
+  // 1. Sign up at https://formspree.io
+  // 2. Create a new form and get your endpoint URL
+  // 3. Uncomment and update the endpoint below
+  formspree: {
+    // endpoint: "https://formspree.io/f/YOUR_FORM_ID", // Replace with your actual Formspree endpoint
+    // enabled: true
+  }
 }; 
